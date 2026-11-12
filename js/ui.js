@@ -1,4 +1,4 @@
-/* Data Produksi v1 — pustaka UI: DOM, ikon SVG inline, format id-ID, modal, toast, tabel (virtual), tema, ekspor. Tanpa CDN. */
+/* Data Produksi v2 — pustaka UI: DOM, ikon SVG inline, format id-ID, modal, toast, tabel (virtual), tema, ekspor. Tanpa CDN. */
 (function () {
   'use strict';
   const $ = (s, r) => (r || document).querySelector(s);

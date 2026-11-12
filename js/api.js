@@ -1,4 +1,4 @@
-/* Data Produksi v1 — klien API: POST text/plain, cache SWR, polling versi (delta), invalidasi per cakupan. */
+/* Data Produksi v2 — klien API: POST text/plain, cache SWR, polling versi (delta), invalidasi per cakupan. */
 (function () {
   'use strict';
   const CFG = window.APP_CONFIG || {};

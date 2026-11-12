@@ -1,4 +1,4 @@
-/* Data Produksi v1 — Laporan: pratinjau, template (bagian yang dipilih), unduh PDF (server) / Excel / PowerPoint / gambar, mode presentasi. */
+/* Data Produksi v2 — Laporan: pratinjau, template (bagian yang dipilih), unduh PDF (server) / Excel / PowerPoint / gambar, mode presentasi. */
 (function () {
   'use strict';
   const { $, $$, esc, ic, fmt } = UI;

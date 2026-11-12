@@ -1,9 +1,9 @@
-/* Data Produksi v1 — kerangka aplikasi: landing, masuk, ganti sandi wajib, shell (menu per izin), router hash, polling versi, Profil & Bantuan. */
+/* Data Produksi v2 — kerangka aplikasi: landing, masuk, ganti sandi wajib, shell (menu per izin), router hash, polling versi, Profil & Bantuan. */
 (function () {
   'use strict';
   const { $, $$, esc, ic, fmt } = UI;
   const root = document.getElementById('root');
-  const VERSI = (window.APP_CONFIG && window.APP_CONFIG.VERSI) || 'v1';
+  const VERSI = 'v2';
 
   // Menu: id halaman, label, ikon, izin (null = semua), kelompok
   const NAV = [
@@ -208,6 +208,23 @@
     ['Narasi saya hilang setelah data berubah?', 'Tidak. Teks yang Anda sunting tetap tersimpan dan diberi tanda "Data berubah". Gunakan tombol kembalikan untuk memakai teks otomatis terbaru.']
   ];
   const PINTAS = [['?', 'Buka bantuan'], ['Tab / Enter / ↑ ↓ ← →', 'Pindah antar sel pada Input Harian'], ['Ctrl + S', 'Simpan pada Input Harian'], ['Esc', 'Tutup dialog / keluar presentasi'], ['← →', 'Pindah slide presentasi'], ['L', 'Penunjuk laser presentasi']];
+
+  // Kartu "Pasang di HP" (PWA): tombol pasang bila peramban mendukung, langkah manual bila tidak.
+  function pwaKartu(el) {
+    if (!el) return;
+    const gambar = () => {
+      if (!document.body.contains(el)) { document.removeEventListener('pwa-state', gambar); return; }
+      const P = window.PWA; let h = '<h3>Pasang di HP</h3>';
+      if (!P) { h += '<p class="small muted">Fitur pemasangan tidak tersedia di peramban ini.</p>'; }
+      else if (P.terpasang()) { h += '<p class="small">' + UI.badge('Sudah terpasang', 'ok') + ' Aplikasi ini sedang dibuka dari layar utama.</p>'; }
+      else if (P.bisaPasang()) { h += '<p class="small muted">Pasang agar aplikasi muncul di layar utama seperti aplikasi biasa, dibuka tanpa kolom alamat peramban.</p><div class="row" style="margin-top:10px"><button class="btn pri" data-pasang>' + ic('upload') + 'Pasang aplikasi</button></div>'; }
+      else if (P.ios()) { h += '<p class="small muted">Di iPhone/iPad, buka halaman ini lewat <b>Safari</b>, lalu:</p><ol class="small" style="margin:8px 0 0 18px;line-height:1.8"><li>Ketuk tombol <b>Bagikan</b> (kotak dengan panah ke atas).</li><li>Pilih <b>Tambah ke Layar Utama</b>.</li><li>Ketuk <b>Tambah</b>.</li></ol>'; }
+      else { h += '<p class="small muted">Di Android (Chrome): buka menu <b>⋮</b> di kanan atas, pilih <b>Pasang aplikasi</b> atau <b>Tambahkan ke layar utama</b>. Bila menu itu belum muncul, muat ulang halaman satu kali lalu coba lagi.</p>'; }
+      el.innerHTML = h;
+      const b = $('[data-pasang]', el); if (b) b.onclick = async () => { const r = await window.PWA.pasang(); if (r === 'diterima') UI.toast && UI.toast('Aplikasi dipasang.', 'ok'); };
+    };
+    document.addEventListener('pwa-state', gambar); gambar();
+  }
   Pages.profil = {
     judul: 'Profil & Bantuan', scopes: ['akses', 'set'],
     mount(host, p) {
@@ -218,7 +235,9 @@
         $$('#tb button', host).forEach((b) => b.classList.toggle('on', b.dataset.t === t));
         if (t === 'profil') {
           tc.innerHTML = '<div class="g g2"><div class="card"><div class="row" style="gap:12px"><span class="avatar" style="width:52px;height:52px;font-size:1.1rem">' + esc(inisial(u.nama || u.username)) + '</span><div><h3 style="margin:0">' + esc(u.nama || u.username) + '</h3><div class="muted small">@' + esc(u.username || '') + '</div></div></div><dl class="dl" style="margin-top:14px"><dt>Peran</dt><dd>' + UI.badge(u.role || '-', 'info') + '</dd><dt>Cakupan data</dt><dd>' + (cak ? 'Divisi ' + esc(cak.join(', ')) : 'Seluruh estate') + '</dd><dt>Jumlah izin</dt><dd>' + (Ctx.izin.indexOf('*') >= 0 ? 'Penuh (superadmin)' : Ctx.izin.length) + '</dd></dl><div class="row" style="margin-top:14px;gap:8px"><button class="btn" data-sandi>' + ic('key') + 'Ganti kata sandi</button><button class="btn" data-out>' + ic('out') + 'Keluar</button></div></div>' +
-            '<div class="card"><h3>Tampilan</h3><p class="small muted">Pilihan ini hanya berlaku di perangkat ini.</p><div class="seg" id="sm"><button data-m="terang">Terang</button><button data-m="gelap">Gelap</button><button data-m="otomatis">Otomatis</button></div><div class="hint" style="margin-top:10px">Gaya, warna, dan kerapatan tampilan diatur administrator di Pengaturan.</div></div></div>';
+            '<div class="card"><h3>Tampilan</h3><p class="small muted">Pilihan ini hanya berlaku di perangkat ini.</p><div class="seg" id="sm"><button data-m="terang">Terang</button><button data-m="gelap">Gelap</button><button data-m="otomatis">Otomatis</button></div><div class="hint" style="margin-top:10px">Gaya, warna, dan kerapatan tampilan diatur administrator di Pengaturan.</div></div></div>'+
+            '<div class="card" id="pwa" style="margin-top:16px"></div>';
+          pwaKartu($('#pwa', tc));
           $('[data-sandi]', tc).onclick = () => modalGantiSandi(false); $('[data-out]', tc).onclick = () => keluar(false);
           const sm = $('#sm', tc); const setM = (m) => { $$('button', sm).forEach((b) => b.classList.toggle('on', b.dataset.m === m)); try { localStorage.setItem('dp_mode', m); } catch (e) {} UI.tema(Object.assign({}, Ctx.set, { mode_gelap: m })); }; $$('button', sm).forEach((b) => { b.onclick = () => setM(b.dataset.m); b.classList.toggle('on', b.dataset.m === mode); });
         } else if (t === 'bantuan') {

@@ -1,4 +1,4 @@
-/* Data Produksi v1 — Input Harian (matriks keyboard per sub) dan Timbangan & Kering (timbangan harian + kering bulanan). */
+/* Data Produksi v2 — Input Harian (matriks keyboard per sub) dan Timbangan & Kering (timbangan harian + kering bulanan). */
 (function () {
   'use strict';
   const { $, $$, esc, ic, fmt } = UI;

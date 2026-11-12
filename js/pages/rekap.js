@@ -1,4 +1,4 @@
-/* Data Produksi v1 — Rekap: tabel berjenjang (bulanan/mingguan/harian/tahunan), per mandor, banding antar tahun, pembangun grafik + preset. */
+/* Data Produksi v2 — Rekap: tabel berjenjang (bulanan/mingguan/harian/tahunan), per mandor, banding antar tahun, pembangun grafik + preset. */
 (function () {
   'use strict';
   const { $, $$, esc, ic, fmt } = UI;

@@ -1,4 +1,4 @@
-/* Data Produksi v1 — Pengaturan: tampilan & landing, rumus & analisa, aturan isu, persetujuan, keamanan & unggahan,
+/* Data Produksi v2 — Pengaturan: tampilan & landing, rumus & analisa, aturan isu, persetujuan, keamanan & unggahan,
    pengguna, hak akses, notifikasi, sistem (kapasitas, arsip, cadangan, performa). Tab tampil sesuai izin. */
 (function () {
   'use strict';

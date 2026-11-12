@@ -1,0 +1,23 @@
+{
+  "name": "Data Produksi — AGRIWANGI Patuahwattee",
+  "short_name": "Data Produksi",
+  "description": "Pencatatan, rekap, dan pelaporan produksi teh PT Perkebunan Teh Patuahwattee (AGRIWANGI).",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "lang": "id",
+  "theme_color": "#1B4332",
+  "background_color": "#F8FAFC",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Input Harian", "short_name": "Input", "url": "./#/input", "icons": [{ "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Dashboard", "short_name": "Dashboard", "url": "./#/dashboard", "icons": [{ "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ]
+}

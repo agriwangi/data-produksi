@@ -1,4 +1,4 @@
-/* Data Produksi v1 — konteks bersama (Ctx), registri halaman (Pages), dan komponen umum (K). */
+/* Data Produksi v2 — konteks bersama (Ctx), registri halaman (Pages), dan komponen umum (K). */
 (function () {
   'use strict';
   const { $, $$, esc, ic, fmt } = UI;

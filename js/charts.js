@@ -1,4 +1,4 @@
-/* Data Produksi v1 — pustaka grafik SVG buatan sendiri (28 jenis), tanpa CDN. Warna, legenda, tooltip, ekspor PNG/SVG, tema terang/gelap. */
+/* Data Produksi v2 — pustaka grafik SVG buatan sendiri (28 jenis), tanpa CDN. Warna, legenda, tooltip, ekspor PNG/SVG, tema terang/gelap. */
 (function () {
   'use strict';
   const U = window.UI, esc = U.esc;

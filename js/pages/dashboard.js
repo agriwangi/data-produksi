@@ -1,4 +1,4 @@
-/* Data Produksi v1 — Dashboard: filter global, KPI, narasi otomatis, isu & gagasan, grafik interaktif, "dari mana angka ini", mode presentasi. */
+/* Data Produksi v2 — Dashboard: filter global, KPI, narasi otomatis, isu & gagasan, grafik interaktif, "dari mana angka ini", mode presentasi. */
 (function () {
   'use strict';
   const { $, $$, esc, ic, fmt } = UI;

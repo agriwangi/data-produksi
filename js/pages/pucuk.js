@@ -1,4 +1,4 @@
-/* Data Produksi v1 — Analisa Pucuk: ringkasan bulanan + tren, daftar pengamatan, input (per tanggal/sub/blok × parameter). Parameter bisa diatur di Pengaturan. */
+/* Data Produksi v2 — Analisa Pucuk: ringkasan bulanan + tren, daftar pengamatan, input (per tanggal/sub/blok × parameter). Parameter bisa diatur di Pengaturan. */
 (function () {
   'use strict';
   const { $, $$, esc, ic, fmt } = UI;

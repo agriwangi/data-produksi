@@ -1,4 +1,4 @@
-/* Data Produksi v1 — Data Master: divisi, sub-wilayah, wilayah, blok (luas berjenjang waktu), mandor, alias blok, blok–mandor. Perubahan tercatat di Riwayat. */
+/* Data Produksi v2 — Data Master: divisi, sub-wilayah, wilayah, blok (luas berjenjang waktu), mandor, alias blok, blok–mandor. Perubahan tercatat di Riwayat. */
 (function () {
   'use strict';
   const { $, $$, esc, ic, fmt } = UI;
